@@ -11,18 +11,14 @@ public class Metodos {
         visitadosDFS = new boolean[nVertices];
     }
 
-    public void DFS(int vi, int grafo[][]) {
-        int v;
-        boolean visitados[] = new boolean[grafo.length];
-        Queue<Integer> cola = new LinkedList();
-        visitados[vi] = true;
-        cola.add(vi);
-//        Iterator<Integer> i = adj[v].listIterator();
-//        while (i.hasNext()) {
-//            int n = i.next();
-//            if (!visited[n])
-//                DFSUtil(n, visited);
-//        }
+    public void DFS(int vi, int grafo[][], boolean visitadosDFS[]) {
+        System.out.print(vi + " ");
+        visitadosDFS[vi] = true;
+        for (int i = 0; i < grafo[vi].length; i++) {
+            if (grafo[vi][i] == 1 && (!visitadosDFS[i])) {
+                DFS(i, grafo, visitadosDFS);
+            }
+        }
     }
 
     public void BFS(int vi, int grafo[][]) {
@@ -35,11 +31,9 @@ public class Metodos {
             v = cola.remove();
             System.out.print(v + " ");
             for (int i = 0; i < grafo.length; i++) {
-                if (grafo[v][i] == 1) {
-                    if (!visitados[i]) {
-                        visitados[i] = true;
-                        cola.add(i);
-                    }
+                if (grafo[v][i] == 1 && !visitados[i]) {
+                    visitados[i] = true;
+                    cola.add(i);
                 }
             }
         }
