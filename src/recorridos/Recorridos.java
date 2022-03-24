@@ -10,10 +10,9 @@ public class Recorridos {
         Scanner texto = new Scanner(System.in);
         int filas, columnas, vi, sgte, var1, valor;
 
-        System.out.println("Ingrese el número de filas de la matriz de adyacencia: ");
+        System.out.println("Ingrese el número de filas o columnas de la matriz de adyacencia: ");
         filas = texto.nextInt();
-        System.out.println("Ingrese el número de columnas de la matriz de adyacencia: ");
-        columnas = texto.nextInt();
+        columnas = filas;
         int[][] grafo = new int[filas][columnas];
 
         System.out.println("Cómo desea ingresar datos a la matriz de adyacencia?\n"
