@@ -12,7 +12,7 @@ public class Recorridos {
 
         System.out.println("Ingrese el número de filas de la matriz de adyacencia: ");
         filas = texto.nextInt();
-        System.out.println("Ingrese el número de columnas: ");
+        System.out.println("Ingrese el número de columnas de la matriz de adyacencia: ");
         columnas = texto.nextInt();
         int[][] grafo = new int[filas][columnas];
 
@@ -43,7 +43,7 @@ public class Recorridos {
                 }
                 for (int i = 0; i < filas; i++) {
                     for (int j = 0; j < columnas; j++) {
-                        System.out.println(grafo[i][j] + " ");
+                        System.out.print(grafo[i][j] + " ");
                     }
                 }
                 break;
@@ -65,9 +65,6 @@ public class Recorridos {
                 }
                 break;
             case 3:
-                Metodos m = new Metodos(grafo.length);
-                boolean visitados[] = new boolean[grafo.length];
-
                 int grafoEjem[][] = {
                     {0, 0, 0, 1, 0},
                     {0, 0, 1, 1, 1},
@@ -76,13 +73,15 @@ public class Recorridos {
                     {0, 1, 1, 1, 0}
                 };
 
+                Metodos m = new Metodos(grafoEjem.length);
+
                 System.out.println("");
                 System.out.println("BFS: ");
                 m.BFS(3, grafoEjem);
-                System.out.println("");
 
+                System.out.println("");
                 System.out.println("DFS: ");
-                m.DFS(3, grafoEjem, visitados);
+                m.DFS(3, grafoEjem);
                 System.out.println("");
 
                 if (m.noDirigido(grafoEjem)) {
@@ -94,32 +93,49 @@ public class Recorridos {
         }
 
         Metodos m = new Metodos(grafo.length);
-        boolean visitados[] = new boolean[grafo.length];
 
-        if (sgte != 0) {
+        if (sgte != 0 & sgte != 3) {
             do {
-                System.out.println("Ingrese el número de la opción deseada: ");
-                System.out.println("1. BFS");
-                System.out.println("2. DFS");
-                System.out.println("3. BFS y DFS");
-                System.out.println("0. Salir");
+                System.out.println("");
+                System.out.println("Ingrese el número de la opción deseada:\n"
+                        + "1. BFS\n"
+                        + "2. DFS\n"
+                        + "3. Verificar si es dirigido\n"
+                        + "4. BFS, DFS y verificar si es dirigido\n"
+                        + "0. Salir");
                 var1 = texto.nextInt();
                 switch (var1) {
                     case 1:
                         System.out.println("Ingrese el valor de inicio: ");
                         vi = texto.nextInt();
                         m.BFS(vi, grafo);
+                        System.out.println("");
                         break;
                     case 2:
                         System.out.println("Ingrese el valor de inicio: ");
                         vi = texto.nextInt();
-                        m.DFS(vi, grafo, visitados);
+                        m.DFS(vi, grafo);
+                        System.out.println("");
                         break;
                     case 3:
+                        if (m.noDirigido(grafo)) {
+                            System.out.println("El grafo es no dirigido");
+                        } else {
+                            System.out.println("El grafo es dirigido");
+                        }
+                        break;
+                    case 4:
                         System.out.println("Ingrese el valor de inicio: ");
                         vi = texto.nextInt();
                         m.BFS(vi, grafo);
-                        m.DFS(vi, grafo, visitados);
+                        System.out.println("");
+                        m.DFS(vi, grafo);
+                        System.out.println("");
+                        if (m.noDirigido(grafo)) {
+                            System.out.println("El grafo es no dirigido");
+                        } else {
+                            System.out.println("El grafo es dirigido");
+                        }
                         break;
                 }
             } while (var1 != 0);
