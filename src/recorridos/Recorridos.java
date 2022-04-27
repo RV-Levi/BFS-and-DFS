@@ -60,6 +60,9 @@ public class Recorridos {
                 for (int i = 0; i < filas; i++) {
                     for (int j = 0; j < columnas; j++) {
                         System.out.print(grafo[i][j] + " ");
+                        if (j == columnas - 1) {
+                            System.out.print("\n");
+                        }
                     }
                 }
                 break;
@@ -126,8 +129,10 @@ public class Recorridos {
                     case 4:
                         System.out.println("Ingrese el valor de inicio: ");
                         vi = texto.nextInt();
+                        System.out.println("BFS: ");
                         m.BFS(vi, grafo);
                         System.out.println("");
+                        System.out.println("DFS: ");
                         m.DFS(vi, grafo);
                         System.out.println("");
                         if (m.noDirigido(grafo)) {
